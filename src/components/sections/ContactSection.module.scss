@@ -1,0 +1,208 @@
+@use "@/styles/variables" as *;
+
+.section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
+  padding: 6rem 3rem;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.infoGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.subTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: $color-text;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.infoValue {
+  color: $color-text;
+}
+
+.copyBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgba($color-text, 0.7);
+  transition: color 0.4s ease;
+
+  &:hover {
+    color: $color-point;
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+
+  @media (max-width: $breakpoint-mobile) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.isVisible {
+  .title {
+    animation: fadeUp 0.5s ease-in-out forwards;
+  }
+
+  .infoGroup {
+    animation: fadeUp 0.5s ease-in-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  .actionGrid {
+    animation: fadeUp 0.5s ease-in-out forwards;
+    animation-delay: 0.75s;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0.2;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title,
+  .infoGroup,
+  .actionGrid {
+    opacity: 1;
+    transform: none;
+  }
+
+  .isVisible {
+    .title,
+    .infoGroup,
+    .actionGrid {
+      animation: none;
+    }
+  }
+
+  .actionCard:hover .letter {
+    animation: none;
+  }
+}
+
+.actionCard {
+  @include card-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+  min-height: 200px;
+  padding: 40px 32px;
+  color: $color-text;
+  text-decoration: none;
+}
+
+.actionTitle {
+  text-align: right;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: $color-text;
+  transition: color 0.3s ease;
+}
+
+.actionCard:hover .actionTitle {
+  color: $color-point;
+}
+
+.waveText {
+  display: inline-flex;
+  align-items: center;
+}
+
+.letter {
+  display: inline-block;
+  white-space: pre;
+}
+
+@keyframes textWave {
+  0% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.actionCard:hover .letter {
+  animation: textWave 0.45s ease-out both;
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+.actionDesc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba($color-text, 0.7);
+}
+
+.mailNotice {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  width: calc(100% - 6rem);
+  max-width: 1000px;
+  font-size: 0.95rem;
+  color: $color-point;
+  text-align: center;
+  opacity: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mailNoticeShow {
+  opacity: 1;
+}
+

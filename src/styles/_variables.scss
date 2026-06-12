@@ -1,0 +1,28 @@
+// Colors
+$color-bg: rgb(11, 11, 19);
+$color-text: #e8e8e8;
+$color-surface:rgba(43, 43, 49, 0.5);
+$color-point : (rgb(91, 255, 206));
+
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 1024px;
+
+// Mixins
+@mixin skills-box {
+  background-color: $color-surface;
+  border: 1px solid rgba($color-text, 0.1);
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+@mixin card-box {
+  background-color: $color-surface;
+  border: 1px solid rgba($color-text, 0.1);
+  border-radius: 12px;
+  transition: background-color 0.25s ease;
+
+  &:hover {
+    background-color: rgba($color-text, 0.06);
+  }
+}

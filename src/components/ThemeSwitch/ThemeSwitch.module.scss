@@ -1,0 +1,58 @@
+$scale: 1.21;
+$option-size: 37px * $scale;
+$indicator-size: 31px * $scale;
+$gap: 0;
+$switch-padding: 3px * $scale;
+
+.switch {
+  position: fixed;
+  bottom: 4rem;
+  left: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  background: #2c2c2e;
+  border-radius: 999px;
+  padding: $switch-padding;
+  gap: $gap;
+  z-index: 20;
+}
+
+.indicator {
+  position: absolute;
+  top: 50%;
+  left: calc((#{$option-size} - #{$indicator-size}) / 2 + #{$switch-padding});
+  width: $indicator-size;
+  height: $indicator-size;
+  border-radius: 999px;
+  background: #48484a;
+  transform: translateY(-50%);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.switch.dark .indicator {
+  transform: translate($option-size + $gap, -50%);
+}
+
+.option {
+  position: relative;
+  z-index: 1;
+  width: $option-size;
+  height: $option-size;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #8e8e93;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88rem * $scale;
+  transition: color 0.25s;
+
+  &.active {
+    color: #e8e8e8;
+  }
+}

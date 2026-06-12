@@ -1,0 +1,25 @@
+@use "@/styles/variables" as *;
+
+.button {
+  position: fixed;
+  bottom: 4rem;
+  right: 4rem;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 20%;
+  border: 1px solid rgba($color-text, 0.3);
+  background: transparent;
+  color: $color-text;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 20;
+
+  &:hover {
+    background: rgba($color-text, 0.08);
+  }
+}

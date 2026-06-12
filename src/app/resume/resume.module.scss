@@ -1,0 +1,432 @@
+@use "@/styles/variables" as *;
+
+.page {
+  height: 100vh;
+  overflow-y: auto;
+  background: $color-bg;
+  color: $color-text;
+  padding: 4rem 2rem 6rem;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 1rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+    color: $color-point;
+  }
+}
+
+.profileTitle {
+  margin-top: 3rem;
+  margin-bottom: 1.2rem;
+}
+
+/* Profile 덩어리 + Project 제목: 로드 시 올라오는 페이드인 (메인 섹션과 동일) */
+.profileBlock,
+.projectsTitle {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.7s ease-in-out forwards;
+}
+
+/* Project 제목은 첫 프로젝트 행(--row-delay 0.3s)과 완전히 동시에 올라옴 */
+.projectsTitle {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0.2;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profileBlock,
+  .projectsTitle {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* Focus */
+.focus {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 0;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}
+
+.avatar {
+  flex: 0 0 auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: rgba($color-text, 0.12);
+  object-fit: cover;
+  object-position: top;
+}
+
+.focusBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.focusTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.3rem 0.9rem;
+  background: $color-surface;
+  border: 1px solid rgba($color-text, 0.12);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.name {
+  margin-top: 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: $color-point;
+}
+
+.lead {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.focusDesc {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba($color-text, 0.75);
+  white-space: pre-line;
+}
+
+/* Project */
+.projects {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Timeline */
+.timelineWrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  padding-left: 2.5rem;
+  padding-bottom: 5rem;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding-left: 2rem;
+  }
+}
+
+.line {
+  position: absolute;
+  left: 0.75rem;
+  top: 0;
+  bottom: 1rem;
+  width: 1px;
+  transform: translateX(-50%);
+  background: rgba($color-text, 0.28);
+  // ing 이후 선 끝부분(꼬리)이 배경으로 자연스럽게 흐려짐 (rail·fill 모두 적용)
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 4rem), transparent);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 calc(100% - 4rem),
+    transparent
+  );
+
+  @media (max-width: $breakpoint-mobile) {
+    left: 0.6rem;
+  }
+}
+
+.lineFill {
+  position: absolute;
+  inset: 0;
+  background: $color-point;
+  transform: scaleY(0);
+  transform-origin: top;
+  will-change: transform;
+}
+
+.projectRow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.projectHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.8rem;
+}
+
+.projectTitle {
+  position: relative;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+// 세로 선 위에 정확히 겹쳐지는 원형 포인트
+.dot {
+  position: absolute;
+  left: -1.75rem;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba($color-text, 0.4); // 기본색(선과 같은 계열)
+  transform: translate(-50%, -50%);
+  transition: background-color 0.35s ease, transform 0.35s ease;
+  z-index: 2;
+
+  @media (max-width: $breakpoint-mobile) {
+    left: -1.4rem;
+  }
+}
+
+// 채워진 선이 도달하면 포인트 컬러로 점등
+.dotActive {
+  background: $color-point;
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.projectBody {
+  position: relative;
+  display: flex;
+  gap: 2.5rem;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+}
+
+/* 각 프로젝트 행: 스크롤로 보일 때(.rowVisible) 하나씩 올라오며 페이드인.
+   dot은 제외(transform 영향 X)되어 타임라인 위치가 유지됨. */
+.projectHeader,
+.projectMedia,
+.projectText {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.rowVisible {
+  .projectHeader,
+  .projectMedia,
+  .projectText {
+    animation: fadeUp 0.7s ease-in-out forwards;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projectHeader,
+  .projectMedia,
+  .projectText {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+// 영상 + 링크 버튼을 담는 좌측 컬럼
+.projectMedia {
+  flex: 0 0 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  @media (max-width: $breakpoint-mobile) {
+    flex-basis: auto;
+    width: 100%;
+  }
+}
+
+.projectImage {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 12px;
+  background: rgba($color-text, 0.12);
+
+  &:hover .projectVideo {
+    transform: scale(1.04);
+    filter: brightness(1.08);
+  }
+}
+
+// 카드를 꽉 채우는 비디오
+.projectVideo {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease, filter 0.45s ease;
+}
+
+// 영상 위 검정 오버레이 (20%)
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+
+.projectText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.projectDesc {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: rgba($color-text, 0.8);
+  white-space: pre-line;
+}
+
+.projectLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: auto; // 소개글 아래, 카드 하단으로 밀어냄
+  justify-content: flex-end; // 우측 정렬
+}
+
+// 아이콘 + "~로 이동" pill 버튼 (기존 태그/외부링크 버튼 스타일과 동일 계열)
+.linkBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  background: $color-surface;
+  border: 1px solid rgba($color-text, 0.12);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $color-text;
+  transition: color 0.2s ease, border-color 0.2s ease,
+    background-color 0.2s ease;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+  &:hover {
+    color: $color-point;
+    border-color: $color-point;
+    background: rgba($color-point, 0.08);
+  }
+}
+
+// github 아이콘: mask로 처리해 currentColor를 따라가게 함 (hover 색 적용)
+.ghIcon {
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask: url("/icons/skills/github.svg") no-repeat center / contain;
+  mask: url("/icons/skills/github.svg") no-repeat center / contain;
+}
+
+// ing: 카드 없이 텍스트만 (진행 중 항목)
+.ingRow .projectTitle {
+  color: rgba($color-text, 0.55);
+  font-weight: 600;
+}
+
+.typewriter {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: 0;
+  font-family: "Courier New", "Consolas", monospace;
+  letter-spacing: 0.08em;
+  color: rgba($color-point, 0.8);
+  border-right: 0.12em solid rgba($color-point, 0.8);
+  animation: ingTyping 3.5s steps(9, end) infinite,
+    ingCaret 0.8s step-end infinite;
+}
+
+// 0 → 9글자 타이핑 후 잠깐 멈췄다가 다시 0으로 (반복)
+@keyframes ingTyping {
+  0% {
+    width: 0;
+  }
+  55% {
+    width: 9ch;
+  }
+  80% {
+    width: 9ch;
+  }
+  100% {
+    width: 0;
+  }
+}
+
+// 커서 깜빡임
+@keyframes ingCaret {
+  0%,
+  100% {
+    border-right-color: rgba($color-point, 0.8);
+  }
+  50% {
+    border-right-color: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriter {
+    width: 9ch;
+    animation: ingCaret 0.8s step-end infinite;
+  }
+}

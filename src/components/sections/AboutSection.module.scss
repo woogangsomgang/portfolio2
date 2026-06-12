@@ -1,0 +1,155 @@
+@use "@/styles/variables" as *;
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  padding: 2rem;
+  min-height: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  padding-top: 150px;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+.titleInner {
+  position: relative;
+  display: inline-block;
+}
+
+.ghost {
+  visibility: hidden;
+}
+
+.typed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  margin-left: 0.08em;
+  background: $color-text;
+  vertical-align: middle;
+  animation: blink 0.7s step-end infinite;
+}
+
+.cursorHidden {
+  opacity: 0;
+  animation: none;
+}
+
+.divider {
+  margin-top: -70px;
+  width: 100%;
+  max-width: 600px;
+  height: 1px;
+  background: rgba($color-text, 0.2);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba($color-text, 0.8);
+  opacity: 0;
+  transform: translateY(12px);
+
+  strong {
+    color: $color-point;
+    font-weight: 700;
+  }
+}
+
+.tags {
+  @include skills-box;
+  width: 100%;
+  max-width: 274px;
+  margin: -30px auto 0;
+  padding: 1px;
+  opacity: 0;
+  transform: translateY(12px);
+  border-radius: 14px;
+}
+
+.tag {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.started {
+  .divider {
+    animation: drawLine 1.2s ease-in-out forwards;
+  }
+}
+
+.typingDone {
+  .body {
+    animation: fadeDown 0.7s ease-in-out forwards;
+    animation-delay: 0.1s;
+  }
+
+  .tags {
+    animation: fadeDown 0.7s ease-in-out forwards;
+    animation-delay: 0.5s;
+  }
+}
+
+@keyframes drawLine {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fadeDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    display: none;
+  }
+
+  .divider {
+    transform: scaleX(1);
+    animation: none;
+  }
+
+  .body,
+  .tags {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

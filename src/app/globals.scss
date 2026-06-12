@@ -1,22 +1,39 @@
+@use "@/styles/variables" as *;
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
+
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #1a1a1a;
-  background: #ffffff;
+  font-family:
+    var(--font-pretendard),
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background: $color-bg;
+  color: $color-text;
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.content {
+  margin-left: 240px;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }

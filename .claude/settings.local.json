@@ -4,7 +4,11 @@
       "Bash(npx --yes create-next-app@latest . --typescript --app --eslint --src-dir --import-alias \"@/*\" --no-tailwind --no-turbopack --use-npm)",
       "Bash(npx --yes create-next-app@latest . --typescript --app --eslint --src-dir --import-alias \"@/*\" --no-tailwind --no-turbopack --use-npm --yes)",
       "Bash(npm install *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(mv 'onjib \\(__TRACKED_VAR__\\).mp4' onjib-__TRACKED_VAR__.mp4)",
+      "Bash(mv \"8.mp4\" \"onjib-8.mp4\")",
+      "Bash(npx next *)"
     ]
   }
 }
