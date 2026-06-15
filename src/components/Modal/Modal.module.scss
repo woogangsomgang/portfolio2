@@ -16,7 +16,7 @@
   width: 100%;
   max-width: 900px;
   max-height: 85vh;
-  background: #2c2c2e;
+  background: var(--color-elevated);
   color: $color-text;
   border-radius: 16px;
   overflow-y: auto;

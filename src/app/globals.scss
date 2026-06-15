@@ -1,5 +1,34 @@
 @use "@/styles/variables" as *;
 
+/* 테마 색상 토큰
+   - 기본(:root) = 다크 (기존 사이트 색상 그대로)
+   - [data-theme="light"] = 라이트 시안 C (Warm Light)
+   - *-rgb 는 rgba(var(--color-*-rgb), a) 형태로 알파 적용에 사용 */
+:root,
+:root[data-theme="dark"] {
+  --color-bg: rgb(11, 11, 19);
+  --color-bg-rgb: 11, 11, 19;
+  --color-text: #e8e8e8;
+  --color-text-rgb: 232, 232, 232;
+  --color-surface: rgba(43, 43, 49, 0.5);
+  --color-surface-rgb: 43, 43, 49;
+  --color-point: rgb(91, 255, 206);
+  --color-point-rgb: 91, 255, 206;
+  --color-elevated: #2c2c2e; // 모달 등 불투명 표면
+}
+
+:root[data-theme="light"] {
+  --color-bg: #f6f6f3;
+  --color-bg-rgb: 246, 246, 243;
+  --color-text: #292929;
+  --color-text-rgb: 0, 0, 0;
+  --color-surface: #ffffff;
+  --color-surface-rgb: 255, 255, 255;
+  --color-point: #0d9488;
+  --color-point-rgb: 13, 148, 136;
+  --color-elevated: #ffffff; // 라이트: 흰색 모달 표면
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

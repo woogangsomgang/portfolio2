@@ -8,7 +8,7 @@
   height: 40px;
   padding: 0;
   border-radius: 20%;
-  border: 1px solid rgba($color-text, 0.3);
+  border: 1px solid rgba(var(--color-text-rgb), 0.3);
   background: transparent;
   color: $color-text;
   cursor: pointer;
@@ -20,6 +20,6 @@
   z-index: 20;
 
   &:hover {
-    background: rgba($color-text, 0.08);
+    background: rgba(var(--color-text-rgb), 0.08);
   }
 }

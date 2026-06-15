@@ -92,14 +92,14 @@
   align-content: flex-start;
   
   &:hover .item {
-    background-color: rgba($color-text, 0.16);
+    background-color: rgba(var(--color-text-rgb), 0.16);
   }
 }
 
 .item {
   width: 80px;
   height: 80px;
-  background: #d5d5db1c;
+  background: rgba(var(--color-text-rgb), 0.06);
   border-radius: 8px;
   display: flex;
   align-items: center;

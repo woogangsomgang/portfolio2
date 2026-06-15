@@ -56,3 +56,20 @@ $switch-padding: 3px * $scale;
     color: #e8e8e8;
   }
 }
+
+// 라이트 테마: 밝은 회색 펄 + 흰색 노브 + 어두운 아이콘
+:global([data-theme="light"]) .switch {
+  background: #d9d9d4;
+}
+
+:global([data-theme="light"]) .indicator {
+  background: #ffffff;
+}
+
+:global([data-theme="light"]) .option {
+  color: #6f6f6f;
+}
+
+:global([data-theme="light"]) .option.active {
+  color: #5f5f5f;
+}
